@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        display: block;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .subject-input {
+        margin-bottom: 15px;
+    }
+
+    .results {
+        display: none;
+        margin-top: 20px;
+        text-align: center;
+        font-size: x-large;
+    }
+
+    .results h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    .results p {
+        text-align: center;
+        color: #555;
+        font-size: 45;
+        font-weight: bold;
+    }
+
+    #printButton {
+        display: block;
+        margin: 20px auto 0;
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #results,
+        #results * {
+            visibility: visible;
+        }
+
+        #results {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Marks Calculator</h1>
+        <form id="subjectForm">
+            <label>Number of Subjects:</label>
+            <input type="number" id="numSubjects" min="1" required>
+            <button type="button" onclick="generateMarksInputs()">Submit</button>
+        </form>
+        <form id="marksForm" style="display: none;">
+            <div id="marksInputs"></div>
+            <button type="button" onclick="calculateResults()">Calculate</button>
+        </form>
+        <center>
+            <div id="results" style="display:none;">
+                <h2>Results</h2>
+                <p id="average"></p>
+                <p id="Total"></p>
+                <p id="details"></p>
+                <div id="res" style="display:none">
+                    <button id="printButton" onclick="printResults()">Print Results</button>
+                </div>
+            </div>
+        </center>
+    </div>
+</body>
+<script>
+    function generateMarksInputs() {
+        const numSubjects = document.getElementById("numSubjects").value;
+        const marksForm = document.getElementById("marksForm");
+        const marksInputs = document.getElementById("marksInputs");
+
+        marksInputs.innerHTML = "";
+        for (let i = 0; i < numSubjects; i++) {
+            const subjectDiv = document.createElement('div');
+            subjectDiv.className = "subject-input";
+
+            const nameLabel = document.createElement('label');
+            nameLabel.textContent = `Name of Subject ${i + 1} : `;
+
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.required = true;
+
+            const markLabel = document.createElement('label');
+            markLabel.textContent = `Mark for Subject ${i + 1} : `;
+
+            const markInput = document.createElement('input');
+            markInput.type = 'number';
+            markInput.min = '0';
+            markInput.max = '100';
+            markInput.required = true;
+
+            subjectDiv.appendChild(nameLabel);
+            subjectDiv.appendChild(nameInput);
+            subjectDiv.appendChild(markLabel);
+            subjectDiv.appendChild(markInput);
+
+            marksInputs.appendChild(subjectDiv);
+        }
+        marksForm.style.display = 'block';
+    }
+    function calculateResults() {
+        const subjectInputs = document.querySelectorAll('.subject-input');
+        let totalMarks = 0;
+        let details = '';
+
+        subjectInputs.forEach((subjectInput, index) => {
+            const nameInput = subjectInput.querySelector('input[type="text"]');
+            const markInput = subjectInput.querySelector('input[type="number"]');
+            
+            if (nameInput && markInput) {
+                const subjectName = nameInput.value;
+                const subjectMark = parseInt(markInput.value);
+                const passOrFail = subjectMark >= 35 ? 'Pass' : 'Fail';
+                totalMarks += subjectMark;
+                details += `${subjectName}: ${subjectMark} - ${passOrFail}<br>`;
+            } else {
+                console.error(`Error accessing input elements for subject ${index + 1}`);
+            }
+        });
+
+        const averageMark = totalMarks / subjectInputs.length;
+        document.getElementById('average').innerHTML = `Average Mark : ${averageMark.toFixed(2)}`;
+        document.getElementById('Total').innerHTML = `Total Marks : ${totalMarks} / ${subjectInputs.length * 100}`;
+        document.getElementById('details').innerHTML = details;
+        document.getElementById('res').style.display = 'block';
+        document.getElementById('results').style.display = 'block';
+    }
+
+    function printResults() {
+        document.getElementById('res').style.display ='none';
+        window.print();
+    }
+</script>
+
+</html>
