@@ -191,7 +191,7 @@
                 const subjectMark = parseInt(markInput.value);
                 const passOrFail = subjectMark >= 35 ? 'Pass' : 'Fail';
                 totalMarks += subjectMark;
-                details += `${subjectName}: ${subjectMark} - ${passOrFail}<br>`;
+                details += `${subjectName}: ${subjectMark} - ${passOrFail}<br><br>`;
             } else {
                 console.error(`Error accessing input elements for subject ${index + 1}`);
             }
