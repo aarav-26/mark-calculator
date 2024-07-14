@@ -1,0 +1,121 @@
+body{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+body h1{
+    text-align: center;
+}
+.contain{
+    margin: 20px;
+    min-width: none;
+    max-width: 700px;
+    border-radius: 25px;
+    border-color: black;
+    border: solid;
+    padding:20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+form{
+    display: block;
+}   
+#container2{
+    min-width: none;
+    max-width: 1000px;
+    border-radius: 25px;
+    border-color: black;
+    border: solid;
+    padding:20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: none;
+}
+form {
+    margin-bottom: 20px;
+    padding:0px 20px 0px 20px;
+}
+
+#subjectForm label {
+    margin: 15px 0px 15px 15px;
+    color: #555;
+    font-size:larger;
+}
+
+#marksForm label{
+    margin:15px;
+    margin-right:5px;
+    color:#555;
+}
+#subjectForm input{
+    width:calc(100%-200px);
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+#marksForm input[type="text"] {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height:20px;
+    height: 100vh;
+    margin:auto;
+    
+}
+#marksForm input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 20px;
+    height:100vh;
+    margin:auto;
+    width:40px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+table{
+    padding:20px; 
+    margin:auto;
+    align-items: center;   
+}
+table thead{
+    padding:2px;
+}
+table th,table tr,table td{
+    border:1px solid black;
+    padding:auto;
+    width:max-content;
+}
+img{
+    max-width: 100px;
+    max-height:100px;
+    margin-left:300px;
+}
+#marksInputs{
+    display: block;
+}
+#bio tr,
+#bio th,
+#bio td{
+    border:none;
+    margin:0px 10px 0px 10px;
+    margin:auto;
+}
+.subject-input{
+    width:100%;
+    display: flex;
+    margin:10px 0px 5px 0px;
+}
