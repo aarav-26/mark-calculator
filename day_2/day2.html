@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Calculator</title>
+    <link rel="icon" type="image/png" href="verify.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="toclose" class="contain">
+        <h1>Marks Calculator</h1>
+        <div class="container">
+            <form id="subjectForm">
+                <div class="nameof">
+                    <label>Name of the Student :</label>
+                    <input type="text" id="nameofst">
+                </div>
+                <div class="college">
+                    <label>School or College Name :</label>
+                    <input type="text" id="collegein">
+                </div>
+                <div class="nof">
+                    <label>Number of Subjects :</label>
+                    <input type="number" id="numSubjects" min="1" required>
+                </div>
+            </form>
+            <button type="button" onclick="generateMarksInputs()">Submit</button>
+            <form id="marksForm" style="display: none;">
+                <div id="marksInputs"></div>
+                <button type="button" onclick="calculateResults()">Calculate</button>
+            </form>
+        </div>
+    </div>
+    <div id="container2">
+        <h1>RESULTS</h1>
+        <h3>AARAV EDUCATIONAL TRUST</h3>
+        <p>no:2/118,Trichy Highway,Ariyalur - 621653</p>
+        <p>Phone : +91 7339443437 , Landline : 04239-766745</p>
+        <table id="bio">
+            <tr>
+                <th>Name :</th>
+                <td id="nametost"></td>
+                <th>College :</th>
+                <td id="collegeto"></td>
+            </tr>
+        </table>
+        <table id="marksTable">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name of Subject</th>
+                    <th>Marks</th>
+                    <th>Grade</th>
+                    <th>Pass/Fail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be added here dynamically -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total</td>
+                    <td colspan="3" id="totalMarks"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Average</td>
+                    <td colspan="3" id="averageMarks"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="seal">
+            <img src="aarav stamp.png">
+        </div>
+        <div id="res">
+            <button id="printButton" onclick="printResults()">Print Results</button>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
